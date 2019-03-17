@@ -1,0 +1,69 @@
+{
+  "Tone": 1,
+  "Tbool": true,
+  "Tenum": "Object",
+  "formatters" : [
+    {
+      "name" : "normal",
+      "type" : "normal",
+      "head": "[YY-MM-DD hh:mm:ss] [PREFIX-LEVEL] ",
+      "tail": " FILE:LINE"
+    },
+    {
+      "name" : "pretty",
+      "type" : "pretty",
+      "head": "[YY-MM-DD hh:mm:ss] [PREFIX-LEVEL] ",
+      "pad-head": "        ",
+      "tail": " FILE:LINE",
+      "line-width": 120,
+      "color" : true,
+      "gbk-width" : 1.77
+    }
+  ],
+  "listeners": [
+    {
+      "name": "file",
+      "type": "file",
+      "formatter": "normal",
+      "file" : "./log/client.log"
+      , "level": "info"
+    },
+    {
+      "name": "cmd",
+      "type": "cmd",
+      "formatter": "pretty"
+      , "level": "log"
+    }
+  ],
+  "emitters": [
+    {
+      "name": "default",
+      "listeners": [
+        "cmd"
+      ],
+      "prefix": "default"
+    },
+    {
+      "name": "client",
+      "listeners": [
+        "cmd", "file"
+      ],
+      "prefix": "client"
+    },
+	{
+		"name" : "pipe",
+		"listeners" : [
+			"cmd" , "file"
+    ],
+    "prefix": "pipe"
+	},
+	{
+		"name" : "conn",
+		"listeners" : [
+			"cmd" , "file"
+    ],
+    "prefix": "conn"
+	}
+  ],
+  "project-path": "D:/proj/golang/src/github.com/cgua/go-tcp-proxy/"
+}
